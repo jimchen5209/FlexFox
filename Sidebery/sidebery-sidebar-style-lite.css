@@ -25,6 +25,11 @@
   left: 0;
 }
 
+.TabsPanel {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
 @media (prefers-color-scheme: light) {
   #root {
     /* Light Theme base settings */
@@ -48,5 +53,36 @@
     --nav-btn-activated-bg: #1f222f !important;
     --panel-btn: #f2f2f2 !important;
     --warn: #8c4351 !important;
+  }
+}
+
+/* SIDEBAR HACK PATCHES */
+
+@media (max-width: 50px) {
+
+  /* Fix to tab tree identation when minimised */
+  #root:not(:hover) .Tab {
+    --tabs-indent: 0px;
+  }
+
+  .Tab[data-lvl]>div.lvl-wrapper {
+    right: -2px;
+  }
+
+  .Tab .fav {
+    z-index: 1;
+  }
+
+  .Tab .audio {
+    z-index: 1;
+    margin-left: -12px;
+    height: 26px;
+  }
+  .Tab .title {
+    display: none;
+  }
+
+  .NavigationBar .settings-btn {
+    display: none;
   }
 }
