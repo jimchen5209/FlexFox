@@ -13,10 +13,24 @@
 
 ## 更新内容
 
+**v1.0.4**:
+- 当网页缩放比例不是默认值时，固定显示缩放比例图标。
+- 当网页已加书签时，固定显示书签星标图标。  
+   <img src="./assets/urlbar-star-light.webp" alt="urlbar-star-light" width="380" />  
+   <img src="./assets/urlbar-star-dark.webp" alt="urlbar-star-dar" width="380" />
+
+**v1.0.3**:
+- 优化了开启“uc.flex.allow-addons-to-change-toolbar-color”选项时的性能，相较于v1.0.2速度提升了1.4倍。
+
+**v1.0.2**:
+- 改善地址栏切换器和图标的显示效果。
+- 添加选项 `uc.flex.allow-addons-to-change-toolbar-color`，允许主题和扩展修改工具栏背景图片和颜色。  
+   <img src="./assets/allow-addons-to-change-toolbar-color.webp" alt="allow-addons-to-change-toolbar-color" width="98%" />
+
 **v1.0.1**:  
-- 修复了URL栏追踪保护图标无法隐藏的问题。  
-- 添加了`uc-pdf.js.css`。  
-- 添加了LICENSE文件。 
+- 修复了URL栏追踪保护图标无法隐藏的问题。
+- 添加了`uc-pdf.js.css`。
+- 添加了LICENSE文件。
 
 **v1.0.0**:
 - 性能大幅提升，相比之前的版本运行速度提高了 **100 倍**。打开右键菜单的延迟仅增加 **16ms**，与默认界面几乎无异。
@@ -25,8 +39,8 @@
 
 ## 预览
 
-![FlexFox Light Theme](./assets/FlexFox-light.webp)
-![FlexFox Dark Theme](./assets/FlexFox-dark.webp)
+![FlexFox Light Theme](./assets/FlexFox-light.webp)  
+![FlexFox Dark Theme](./assets/FlexFox-dark.webp)  
 *上图：FlexFox 的浅色和深色主题预览。*
 
 ## 主要功能
@@ -101,6 +115,7 @@
 | `uc.flex.fully-hide-sidebery`             | 完全隐藏 Sidebery。                                      |
 | `uc.flex.fully-hide-toolbox`              | 隐藏所有顶部工具栏（标签、导航、书签）。                    |
 | `uc.flex.increase-sidebery-expanded-width`| 增加 Sidebery 展开时的宽度。                             |
+| `uc.flex.allow-addons-to-change-toolbar-color` | 允许主题和扩展修改工具栏的背景图片和颜色                  |
 | `uc.flex.disable-bookmarks-autohide`      | 禁用书签栏自动隐藏。                                      |
 | `uc.flex.disable-tabs-toolbar-autohide`   | 禁用 Sidebery 非激活时的原生标签栏自动隐藏。                  |
 | `uc.flex.disable-findbar-autohide`        | 禁用查找栏失去焦点时自动隐藏。                             |

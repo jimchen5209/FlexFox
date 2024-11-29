@@ -13,10 +13,24 @@ FlexFoxは、[VerticalFox](https://github.com/christorange/VerticalFox)、[EdgyA
 
 ## 最新情報
 
+**v1.0.4**:
+- ウェブページのズームレベルがデフォルトでない場合、ズームレベルアイコンを常に表示するようにしました。
+- ウェブページがブックマーク済みの場合、ブックマークの星アイコンを常に表示するようにしました。  
+   <img src="./assets/urlbar-star-light.webp" alt="urlbar-star-light" width="380" />  
+   <img src="./assets/urlbar-star-dark.webp" alt="urlbar-star-dar" width="380" />
+
+**v1.0.3**:
+- "uc.flex.allow-addons-to-change-toolbar-color"オプション有効時のパフォーマンスを最適化し、v1.0.2と比較して速度が1.4倍向上しました。
+
+**v1.0.2**:
+- URLバーのスイッチャーとチックレットの表示を改善。
+- テーマや拡張機能がツールバー背景を変更可能にするオプション `uc.flex.allow-addons-to-change-toolbar-color` を追加。  
+   <img src="./assets/allow-addons-to-change-toolbar-color.webp" alt="allow-addons-to-change-toolbar-color" width="98%" />
+
 **v1.0.1**:  
-- URLバーのトラッキング保護アイコンが非表示にならない問題を修正しました。  
-- `uc-pdf.js.css` を追加しました。  
-- LICENSEファイルを追加しました。 
+- URLバーのトラッキング保護アイコンが非表示にならない問題を修正しました。 
+- `uc-pdf.js.css` を追加しました。 
+- LICENSEファイルを追加しました。
 
 **v1.0.0**:
 - パフォーマンスが劇的に向上し、従来版と比べて約100倍の高速化を実現しました。コンテキストメニューの表示にかかる時間は標準UIと比べてわずか**16ms**の差に抑えられています。
@@ -25,8 +39,8 @@ FlexFoxは、[VerticalFox](https://github.com/christorange/VerticalFox)、[EdgyA
 
 ## プレビュー
 
-![FlexFox Light Theme](./assets/FlexFox-light.webp)
-![FlexFox Dark Theme](./assets/FlexFox-dark.webp)
+![FlexFox Light Theme](./assets/FlexFox-light.webp)  
+![FlexFox Dark Theme](./assets/FlexFox-dark.webp)  
 *上：FlexFoxのライトテーマとダークテーマの表示例*
 
 ## 主な機能
@@ -100,6 +114,7 @@ FlexFoxは、[VerticalFox](https://github.com/christorange/VerticalFox)、[EdgyA
 | `uc.flex.fully-hide-sidebery` | Sideberyを完全に非表示 |
 | `uc.flex.fully-hide-toolbox` | 上部ツールバーをすべて非表示 |
 | `uc.flex.increase-sidebery-expanded-width` | Sideberyの展開時の幅を広げる |
+| `uc.flex.allow-addons-to-change-toolbar-color` | テーマや拡張機能がツールバーの背景画像と色を変更可能にする |
 | `uc.flex.disable-bookmarks-autohide` | ブックマークバーの自動非表示を無効化 |
 | `uc.flex.disable-tabs-toolbar-autohide` | Sidebery未使用時のタブバー自動非表示を無効化 |
 | `uc.flex.disable-findbar-autohide` | 検索バーの自動非表示を無効化 |

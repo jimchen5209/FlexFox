@@ -13,9 +13,23 @@ A customizable Firefox theme inspired by [VerticalFox](https://github.com/christ
 
 ## What's New
 
+**v1.0.4**:
+- The zoom level icon is now always visible when the webpage is not at the default zoom level.
+- The bookmark star icon is now always visible when the webpage has already been bookmarked.  
+   <img src="./assets/urlbar-star-light.webp" alt="urlbar-star-light" width="380" />  
+   <img src="./assets/urlbar-star-dark.webp" alt="urlbar-star-dar" width="380" />
+
+**v1.0.3**:
+- Optimized performance when the "uc.flex.allow-addons-to-change-toolbar-color" option is enabled, improving speed by 1.4x compared to v1.0.2.
+
+**v1.0.2**:
+- Improve URL bar switcher and chicklet visuals.  
+- Add option `uc.flex.allow-addons-to-change-toolbar-color` to allow themes and addons to customize toolbar background image and color.  
+   <img src="./assets/allow-addons-to-change-toolbar-color.webp" alt="allow-addons-to-change-toolbar-color" width="96%" />
+
 **v1.0.1**:
-- Fixed the issue where the tracking protection icon in the URL bar was not hidden.  
-- Added `uc-pdf.js.css`.  
+- Fixed the issue where the tracking protection icon in the URL bar was not hidden.
+- Added `uc-pdf.js.css`.
 - Added LICENSE file.
 
 **v1.0.0**:
@@ -25,8 +39,8 @@ A customizable Firefox theme inspired by [VerticalFox](https://github.com/christ
 
 ## Previews
 
-![FlexFox Light Theme](./assets/FlexFox-light.webp)
-![FlexFox Dark Theme](./assets/FlexFox-dark.webp)
+![FlexFox Light Theme](./assets/FlexFox-light.webp)  
+![FlexFox Dark Theme](./assets/FlexFox-dark.webp)  
 *Above: Light and Dark theme previews of FlexFox in action.*
 
 ## Features
@@ -101,6 +115,7 @@ A customizable Firefox theme inspired by [VerticalFox](https://github.com/christ
 | `uc.flex.fully-hide-sidebery`          | Completely hide Sidebery.                           |
 | `uc.flex.fully-hide-toolbox`           | Hide all top toolbars (tabs, navigation, bookmarks).|
 | `uc.flex.increase-sidebery-expanded-width` | Increase the expanded width of Sidebery.          |
+| `uc.flex.allow-addons-to-change-toolbar-color` | Allows themes and addons to customize toolbar background image and color.          |
 | `uc.flex.disable-bookmarks-autohide`   | Disable bookmarks toolbar auto-hide.                |
 | `uc.flex.disable-tabs-toolbar-autohide`| Disable the native horizontal tab bar auto-hide when Sidebery is inactive.|
 | `uc.flex.disable-findbar-autohide`     | Disable Findbar auto-hide when it loses focus.       |
