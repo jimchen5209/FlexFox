@@ -13,6 +13,9 @@ FlexFoxは、[VerticalFox](https://github.com/christorange/VerticalFox)、[EdgyA
 
 ## 最新情報
 
+**v2.0.2**  
+- `@media` ルールを Firefox v137+ に対応するよう更新。  
+
 **v2.0.1**  
 - ウィンドウが最大化されていない時、上部に1pxの枠線を追加しました。  
 - スタイルを整理し、不要なルールやコメントを削除しました。  

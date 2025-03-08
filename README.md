@@ -13,6 +13,9 @@ A customizable Firefox theme inspired by [VerticalFox](https://github.com/christ
 
 ## What's New
 
+**v2.0.2**  
+- Updated `@media` rule for Firefox v137+ compatibility.  
+
 **v2.0.1**  
 - Added a 1px border to the top when the window is not maximized.  
 - Cleaned up the styles by removing unnecessary rules and comments.  
