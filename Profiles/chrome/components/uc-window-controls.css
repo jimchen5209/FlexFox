@@ -5,7 +5,7 @@
 }
 
 /* Prevent navigation bar background overflow in certain themes */
-@media not (-moz-bool-pref: "uc.flex.allow-addons-to-change-toolbar-color") {
+@media not -moz-pref("uc.flex.allow-addons-to-change-toolbar-color") {
     #nav-bar:not([customizing]) {
         padding-bottom: var(--uc-nav-bar-padding-bottom) /*!important*/;
         margin-bottom: var(--uc-nav-bar-margin-bottom) /*!important*/;
@@ -118,38 +118,7 @@
 =============================================*/
 
 /* ----- Close/min/max fix ----- */
-/** 
- * This rule employs an unconventional approach. 
- * It combines two separate rules: one for Windows controls and another for fullscreen support. 
- * These two rules have mutually exclusive conditions: 
- *    - Condition (A) applies when not in fullscreen mode.
- *    - Condition (B) applies when in fullscreen mode.
-
- * However, both share a common condition: they apply when `:root :has(sidebery.active)` is true. 
- * Since `:root :has()` is computationally expensive, we aim to minimize its use. 
- * By merging the two rules into one, we only need to evaluate `:root :has()` once.
-
- * In the outermost layer of the nested structure, we select scenarios that meet either condition (A) **or** condition (B). 
- * In the second layer, we apply their shared condition, `:root :has(sidebery.active)`. 
- * Finally, in the third layer, we use `@media` to differentiate between fullscreen and non-fullscreen states, 
- * applying the respective rules for condition (A) and condition (B).
-
- * While this method may seem counterintuitive, it successfully reduces the number of `:root :has()` evaluations, 
- * saving approximately 2ms of processing time in testing. 
- */
-/*
-:root:is([tabsintitlebar], [customtitlebar]):not([customizing]),
-:root[inFullscreen] {
-    :has(#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden])) {
-        @media not (display-mode: fullscreen) {
-        }
-        @media (display-mode: fullscreen) {
-        }
-    }
-}
-*/
-/* The speed optimization mentioned above is no longer necessary, but the comment remains for future reference */
-:root:is([tabsintitlebar], [customtitlebar]):not([customizing]):not([inFullscreen]) {
+:root:is([tabsintitlebar], [customtitlebar]):not([customizing]) {
     #TabsToolbar .titlebar-buttonbox-container {
         visibility: var(--uc-windows-controls-visibility) !important;
         /*display: block;*/
@@ -184,40 +153,6 @@
 */
 
 /*==========  End of Section Windows Controls  ===========*/
-
-/*=========================================================
-=     Window control placeholder support in fullscreen    =
-=========================================================*/
-
-/* Modified from https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/window_control_placeholder_support.css */
-/* 7eca4b1 */
-
-:root[inFullscreen] #TabsToolbar > .titlebar-buttonbox-container:last-child {
-    position: var(--uc-windows-controls-position);
-    /*display: flex;*/
-    top: var(--uc-windows-controls-top);
-    right: var(--uc-windows-controls-right);
-    /*height: 32px;*/
-}
-
-/*
-.titlebar-buttonbox {
-    color: var(--toolbar-color);
-}
-*/
-
-/**
- * Note: When native vertical tabs are enabled, 
- * the current Nightly version doesn't auto-hide nav-bar window controls in fullscreen, 
- * so placeholder support is not required.
- */
-/*
-#navigator-toolbox:not([tabs-hidden]) .titlebar-buttonbox-container {
-    display: none;
-}
-*/
-
-/*=====  End of Section Window control placeholder support in fullscreen  ======*/
 
 /* Line up the Windows controls with the rest of the icons in the toolbar. */
 :root[inFullscreen] .titlebar-buttonbox-container {
@@ -280,11 +215,11 @@
         --uc-nav-bar-padding-right: 0px;
     }
 
-    @media (-moz-bool-pref: "uc.flex.fully-hide-toolbox") {
+    @media -moz-pref("uc.flex.fully-hide-toolbox") {
         --uc-findbar-set-top: calc(var(--uc-bm-padding) + var(--uc-bm-height) + var(--urlbar-toolbar-height));
     }
 
-    @media (-moz-bool-pref: "uc.flex.fully-hide-toolbox") and (not (-moz-bool-pref: "uc.flex.fully-hide-sidebery")) {
+    @media -moz-pref("uc.flex.fully-hide-toolbox") and (not -moz-pref("uc.flex.fully-hide-sidebery")) {
         #navigator-toolbox {
             margin-left: var(--uc-navigator-offset);
             width: calc(100% - var(--uc-sidebar-width));
@@ -298,7 +233,7 @@
  * so the nav-bar no longer needs to reserve space on the right for these controls, 
  * and the padding should be reset to 0. 
  */
-@media (-moz-bool-pref: "sidebar.verticalTabs") {
+@media -moz-pref("sidebar.verticalTabs") {
     #navigator-toolbox {
         --uc-nav-bar-padding-right: 0px;
     }
@@ -311,7 +246,7 @@
 =============================================*/
 
 /* Offset bookmarks toolbar horizontally when Sidebery is visible to prevent overlap with sidebar */
-@media not (-moz-bool-pref: "uc.flex.fully-hide-sidebery") {
+@media not -moz-pref("uc.flex.fully-hide-sidebery") {
     :root:not([inFullscreen]):not([customizing]) {
         #PersonalToolbar {
             margin-left: var(--uc-personal-toolbar-offset);
@@ -333,7 +268,7 @@
     }
     #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden]) {
         padding-top: 0px !important;
-        @media not (-moz-bool-pref: "uc.flex.disable-bookmarks-autohide") {
+        @media not -moz-pref("uc.flex.disable-bookmarks-autohide") {
             margin-top: calc(var(--uc-bm-height) + 2 * var(--uc-bm-padding));
         }
     }
@@ -343,7 +278,7 @@
  * Avoid overlap of the bookmarks toolbar by the sidebar
  * when "Only Show Bookmarks Toolbar on New Tab" is enabled for Firefox >= 130 
  */
-@media (-moz-bool-pref: "uc.flex.disable-bookmarks-autohide") {
+@media -moz-pref("uc.flex.disable-bookmarks-autohide") {
     :root:not([inFullscreen]):not([customizing]):not([BookmarksToolbarOverlapsBrowser]) {
         /* Recalculate the findbar position if "uc.flex.disable-bookmarks-autohide" is enabled */
         --uc-findbar-set-top: calc(-1 * var(--uc-bm-padding));
@@ -363,7 +298,7 @@
 =             Revamped Sidebar                =
 =============================================*/
 
-@media (-moz-bool-pref: "sidebar.revamp") {
+@media -moz-pref("sidebar.revamp") {
     #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden]) {
         /* Position Sidebery at the screen edge to simplify hover-triggered expansion */
         --browser-area-z-index-sidebar: 5;
@@ -404,7 +339,7 @@
      * when the revamped sidebar is enabled and Sidebery is fully hidden, 
      * as the revamped sidebar will still display.
      */
-    @media (-moz-bool-pref: "uc.flex.fully-hide-sidebery") {
+    @media -moz-pref("uc.flex.fully-hide-sidebery") {
         :root:not([inFullscreen]):not([customizing]) {
             #PersonalToolbar {
                 margin-left: var(--uc-personal-toolbar-offset);
@@ -440,7 +375,7 @@
 }
 
 /* Reposition nav-bar window controls when native vertical tabs are enabled */
-@media (-moz-bool-pref: "sidebar.verticalTabs") {
+@media -moz-pref("sidebar.verticalTabs") {
     :root:not([inFullscreen]) #nav-bar > .titlebar-buttonbox-container {
         margin-top: 2px;
     }
