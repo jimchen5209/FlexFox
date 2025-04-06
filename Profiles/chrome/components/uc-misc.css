@@ -1,11 +1,11 @@
 /* Remove labels from bookmarks */
-@media (-moz-bool-pref: "uc.flex.remove-bookmarks-labels") {
+@media -moz-pref("uc.flex.remove-bookmarks-labels") {
     #personal-bookmarks .toolbarbutton-text {
         display: none !important;
     }
 }
 
-@media (-moz-bool-pref: "uc.flex.remove-bookmarks-folder-icons") {
+@media -moz-pref("uc.flex.remove-bookmarks-folder-icons") {
     /* No Favicon Available - Don't display default icon */
     toolbarbutton.bookmark-item:not([container]):not([image]) image {
         display: none !important;
@@ -36,7 +36,7 @@
 }
 
 /* Add text stroke */
-@media (-moz-bool-pref: "uc.flex.add-ui-text-stroke") {
+@media -moz-pref("uc.flex.add-ui-text-stroke") {
     * {
         /*font-family:  !important;*/
         text-shadow: 0 0 0.03em color-mix(in srgb, currentColor 80%, transparent);
@@ -104,6 +104,11 @@ toolbar:not(#TabsToolbar) > #search-container {
   :not(:has()) checks NONE are hidden, while :has(:not()) matches if ANY are visible */
 #PlacesToolbarItems:not(:has(> .bookmark-item[style="visibility: hidden;"])) + #PlacesChevron {
     display: none !important;
+}
+
+/* Add the missing top border for non-maximized windows */
+#main-window[sizemode="normal"]:is([tabsintitlebar], [customtitlebar]) {
+    border-top: 1px solid rgb(67, 72, 76);
 }
 
 /* Remove white flash before page load */
