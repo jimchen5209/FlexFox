@@ -67,7 +67,7 @@ user_pref("uc.flex.remove-sidebar-stripe",                      false);
 
 /* 🪛 Modify or Adjust Features */
 /* Increases Sidebery's expanded width; also applies to native vertical tabs when kept open. */
-user_pref("uc.flex.increase-sidebery-expanded-width",           true);
+user_pref("uc.flex.increase-sidebery-expanded-width",           false);
 /* Increases navbar height, instead of Firefox's compact default. */
 user_pref("uc.flex.increase-navbar-height",                     false);
 /* Switches to a different, condensed extension panel. */
