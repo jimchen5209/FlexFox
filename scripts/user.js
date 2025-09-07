@@ -85,7 +85,7 @@ user_pref("uc.flex.max-visible-vertical-pinned-tabs",               4);
 /* Sets findbar position (string: "top-center-left"/"1", "top-right"/"2", "bottom-right"/"3"). */
 user_pref("uc.flex.findbar-position",                     "top-right");
 /* Sets vertical spacing between items in app/bookmark/context menus (string: "1"/"small", "2"/"medium", "3"/"large"). */
-user_pref("uc.flex.menu-item-spacing",                        "small");
+user_pref("uc.flex.menu-item-spacing",                        "large");
 
 /* ⚙️ Native Firefox Settings */
 /* Fades out discarded tabs (manually unloaded) in Firefox's native vertical tabs. */
