@@ -46,7 +46,7 @@ user_pref("uc.flex.show-tab-close-button-on-favicon-hover",     false);
    2 = show icon and number (only loaded tabs)
    3 = show number only (all tabs)
    4 = show number only (only loaded tabs) */
-user_pref("uc.flex.show-tab-count-in-alltabs-button",               0);
+user_pref("uc.flex.show-tab-count-in-alltabs-button",               2);
 /* Shows a numeric index before each tab's label text. */
 user_pref("uc.flex.show-tab-number-in-tab-label",               false);
 /* Moves PiP window volume button to the top */
