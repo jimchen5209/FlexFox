@@ -190,7 +190,7 @@
                 border-top-left-radius: var(--uc-sb-web-content-radius-top-left, var(--uc-web-content-radius));
                 border-top-right-radius: var(--uc-sb-web-content-radius-top-right, var(--uc-web-content-radius));
                 overflow: hidden;
-                box-shadow: 0 1.5px 9px light-dark(#00000026, #00000040);
+                box-shadow: 0 1.5px 9px light-dark(rgba(12, 12, 16, 0.15), rgba(12, 12, 16, 0.25));
                 @media -moz-pref("uc.flex.-dev-web-content-box-shadow-highlight") {
                     box-shadow: 0 1.5px 9px red;
                 }
@@ -603,6 +603,8 @@
             rgba(32, 32, 32, var(--uc-urlbar-backdrop-transparency))
         ) !important;
         background-image: none !important;
+    }
+    findbar {
         backdrop-filter: blur(26px) saturate(140%);
     }
     findbar:has(.found-matches:not([hidden])) {
@@ -610,9 +612,9 @@
     }
     .found-matches {
         height: 25px;
-        padding: 0px 12px 0px 10px;
-        top: 39px;
-        border-bottom-right-radius: var(--uc-findbar-border-radius, var(--toolbarbutton-border-radius));
+        padding: 2px 12px 0px 10px;
+        top: 35px;
+        border-bottom-right-radius: var(--uc-findbar-outer-border-radius);
         &::after {
             display: none;
         }

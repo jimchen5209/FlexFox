@@ -1,6 +1,6 @@
 @media not -moz-pref("sidebar.verticalTabs") {
     @media not -moz-pref("uc.flex.fully-hide-toolbox") {
-        :root:not([inFullscreen], [titlepreface*="\200b "], [titlepreface*="\200d "]) {
+        :root:not([taskbartab], [inFullscreen], [titlepreface*="\200b "], [titlepreface*="\200d "]) {
             /* Modified from https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/autohide_tabstoolbar_v2.css */
             /* be179ef */
 
@@ -25,10 +25,10 @@
                     line-height: 18px !important;
                 }
                 /* ---- Show tab bar on hover when Sidebery is inactive ---- */
-                &:not([customizing], [chromehidden~="menubar"]) #navigator-toolbox:hover {
+                &:not([customizing], [chromehidden~="menubar"]) #navigator-toolbox:is(:hover, :focus-within) {
                     margin-bottom: var(--uc-autohide-navigator-bottom);
                 }
-                #navigator-toolbox:hover {
+                #navigator-toolbox:is(:hover, :focus-within) {
                     /* Direct child selectors can be used starting from version 133 */
                     #TabsToolbar {
                         visibility: var(--uc-autohide-tabstoolbar-visibility);
@@ -157,7 +157,7 @@
                 &[sessionrestored]:not([customizing]) #urlbar[popover] {
                     opacity: var(--uc-navbar-opacity, 0);
                     pointer-events: none;
-                    transition: var(--uc-autohide-navbar-transition);
+                    transition: var(--uc-autohide-urlbar-transition) !important;
                     transform: translateY(var(--uc-navbar-transform));
                 }
                 #mainPopupSet:has(
@@ -181,7 +181,7 @@
                     /*
                     transition-delay: 0ms;
                     */
-                    transition: var(--uc-hover-navbar-transition);
+                    transition: var(--uc-hover-urlbar-transition) !important;
                     transform: translateY(0);
                 }
                 /*
@@ -253,7 +253,7 @@
                     --browser-area-z-index-toolbox: var(--uc-navigator-z-index);
                     transition: var(--uc-autohide-navigator-transition) !important;
                 }
-                #navigator-toolbox:hover {
+                #navigator-toolbox:is(:hover, :focus-within) {
                     /**
                      * When automatic hiding of the bookmarks toolbar is disabled and Sidebery is active,
                      * set z-index to 0 so that Sidebery can appear above the bookmarks toolbar.
@@ -336,7 +336,7 @@ toolbar#TabsToolbar {
             transition: none !important;
             @media -moz-pref("uc.flex.increase-active-horizontal-tab-min-width", 2),
                 -moz-pref("uc.flex.increase-active-horizontal-tab-min-width", 4) {
-                transition: 300ms ease-in-out 0ms !important;
+                transition: var(--uc-horizontal-tab-width-transition-duration) ease-in-out 0ms !important;
             }
             @media -moz-pref("uc.flex.increase-active-horizontal-tab-min-width", 3),
                 -moz-pref("uc.flex.increase-active-horizontal-tab-min-width", 4) {
@@ -347,7 +347,7 @@ toolbar#TabsToolbar {
             transition: none !important;
             @media -moz-pref("uc.flex.increase-active-horizontal-tab-min-width", 2),
                 -moz-pref("uc.flex.increase-active-horizontal-tab-min-width", 4) {
-                transition: 300ms ease-in-out 0ms !important;
+                transition: var(--uc-horizontal-tab-width-transition-duration) ease-in-out 0ms !important;
             }
         }
     }
@@ -420,7 +420,7 @@ toolbar#TabsToolbar {
                 --uc-tab-icon-image-visibility: hidden;
             }
             .tab-icon-image {
-                visibility: var(--uc-tab-icon-image-visibility, visible);
+                visibility: var(--uc-tab-icon-image-visibility, unset);
             }
 
             .tab-close-button {

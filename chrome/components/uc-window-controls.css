@@ -15,20 +15,18 @@
 
     /* Hide TabsToolbar window controls when native vertical tabs are enabled */
     @media -moz-pref("sidebar.verticalTabs") {
-        #navigator-toolbox[tabs-hidden] > #TabsToolbar > .titlebar-buttonbox-container {
+        #navigator-toolbox > #TabsToolbar > .titlebar-buttonbox-container {
             display: none !important;
         }
 
-        #navigator-toolbox[tabs-hidden] > #nav-bar > .titlebar-spacer[type="post-tabs"] {
+        /*
+        #navigator-toolbox > #nav-bar > .titlebar-spacer[type="post-tabs"] {
             display: none !important;
         }
-
-        #navigator-toolbox[tabs-hidden] > #nav-bar > .titlebar-buttonbox-container {
-            margin-left: -4px;
-        }
+        */
     }
 
-    #navigator-toolbox .titlebar-spacer[type="pre-tabs"] {
+    #navigator-toolbox .titlebar-spacer {
         display: none !important;
     }
 }
@@ -64,7 +62,7 @@
 
 /* Reposition nav-bar window controls */
 #nav-bar > .titlebar-buttonbox-container {
-    margin-top: 2px;
+    margin-top: var(--uc-titlebar-buttonbox-margin-top);
 }
 
 /*
@@ -140,16 +138,44 @@
 }
 */
 
+.titlebar-buttonbox-container {
+    margin-left: -4px;
+    @media -moz-pref("uc.flex.restore-window-controls-on-tabbar") and (not -moz-pref("sidebar.verticalTabs")) {
+        margin-left: 0px;
+    }
+    @media -moz-pref("uc.flex.style-window-controls-shrink-size") {
+        @media -moz-pref("sidebar.position_start") and (not -moz-pref("uc.flex.move-window-controls-to-left")) {
+            padding-right: var(--uc-web-content-margin) !important;
+        }
+    }
+    @media -moz-pref("uc.flex.move-window-controls-to-left") and (not (-moz-platform: macos)) {
+        margin-left: 4px;
+        order: -1 !important;
+        .titlebar-close {
+            order: -1 !important;
+        }
+    }
+}
+
 .titlebar-buttonbox {
     z-index: 3 !important;
     padding-right: 3px;
 }
 
-.titlebar-buttonbox * {
+.titlebar-button {
     border-radius: 5px;
-    width: 35px;
+    width: var(--uc-titlebar-buttonbox-width);
     /* height: 38px; */
     height: var(--uc-titlebar-buttonbox-height);
+    @media -moz-pref("uc.flex.style-window-controls-shrink-size") {
+        &:hover {
+            scale: 1.2;
+        }
+        transition: scale 0.1s ease-out;
+        @media -moz-pref("uc.flex.revert-to-original-window-controls") {
+            padding: 8px 0px !important;
+        }
+    }
 }
 
 @media not -moz-pref("sidebar.verticalTabs") {
@@ -164,9 +190,11 @@
      * to rely on the tab bar window controls, which are not affected by transform.
      */
     #TabsToolbar {
+        /*
         > .titlebar-spacer[type="post-tabs"] {
             display: none !important;
         }
+        */
         > .titlebar-buttonbox-container {
             display: var(--uc-tabs-toolbar-windows-controls-display, none) !important;
         }
@@ -185,18 +213,29 @@
                     > .titlebar-buttonbox-container {
                         position: absolute !important;
                         top: var(--uc-tabs-toolbar-height) !important;
-                        right: 0 !important;
+                        @media not -moz-pref("uc.flex.move-window-controls-to-left") {
+                            right: 0 !important;
+                        }
+                        @media -moz-pref("uc.flex.move-window-controls-to-left") {
+                            left: 0 !important;
+                        }
                         @media not -moz-pref("uc.flex.fully-hide-toolbox") {
                             :root:not([inFullscreen], [titlepreface*="\200b "], [titlepreface*="\200d "]) & {
                                 margin-block-start: var(--uc-navbar-transform);
                                 @media not -moz-pref("uc.flex.auto-hide-window-controls") {
-                                    margin-inline-end: var(--uc-tabs-toolbar-windows-controls-margin-right, -104px);
+                                    margin-inline-end: var(
+                                        --uc-tabs-toolbar-windows-controls-margin-right,
+                                        calc(-1 * var(--uc-window-controls-width))
+                                    );
                                     opacity: var(--uc-navbar-opacity, 0);
                                     transition: var(--uc-autohide-tabs-toolbar-windows-controls-transition);
                                 }
 
                                 #navigator-toolbox:is(:hover, :focus-within) & {
-                                    margin-block-start: 0;
+                                    margin-block-start: 2px;
+                                    @media -moz-pref("uc.flex.style-window-controls-shift-up") {
+                                        margin-block-start: 0;
+                                    }
                                     @media not -moz-pref("uc.flex.auto-hide-window-controls") {
                                         margin-inline-end: 0;
                                         opacity: 1;
@@ -216,16 +255,39 @@
 @media -moz-pref("uc.flex.auto-hide-window-controls") {
     :where(#nav-bar, #TabsToolbar) > .titlebar-buttonbox-container {
         @media -moz-pref("sidebar.position_start") {
-            margin-inline-end: -104px;
-            opacity: 0;
-            transition:
-                margin-inline-end 0.5s ease-in-out,
-                opacity 0s 0.5s;
+            @media not -moz-pref("uc.flex.move-window-controls-to-left") {
+                margin-inline-end: calc(-1 * var(--uc-window-controls-width));
+                opacity: 0;
+                transition:
+                    margin-inline-end 0.5s ease-in-out,
+                    opacity 0s 0.5s;
 
-            &:hover {
-                margin-inline-end: 0;
-                opacity: 1;
-                transition-delay: 0s, 0.4s;
+                &:hover {
+                    margin-inline-end: 0;
+                    opacity: 1;
+                    transition-delay: 0s, 0.4s;
+                }
+            }
+            @media -moz-pref("uc.flex.move-window-controls-to-left") {
+                /**
+                 * Shift the navbar left by 3px less than the full width of the window controls,
+                 * leaving 1px of space reserved for hover detection.
+                 */
+                margin-inline-start: calc(-1 * (var(--uc-window-controls-width) + 3px));
+                opacity: 0;
+                transition:
+                    margin-inline-start 0.5s ease-in-out,
+                    padding-inline-start 0.1s ease-in-out 0.4s,
+                    opacity 0s 0.5s;
+
+                &:hover {
+                    margin-inline-start: 0;
+                    /* Use padding instead of margin to create left spacing,
+                       preventing hover state loss when reaching the edge. */
+                    padding-inline-start: 4px;
+                    opacity: 1;
+                    transition-delay: 0s, 0.4s;
+                }
             }
         }
         /**
@@ -248,7 +310,7 @@
             overflow: hidden;
 
             &:hover {
-                width: 108px;
+                width: calc(var(--uc-window-controls-width) + 4px);
                 opacity: 1;
                 transition-delay: 0s, 0.4s;
             }
@@ -294,23 +356,69 @@
     }
 }
 
-/* When auto-hide navbar is enabled, add space to the right of #PanelUI-button
-   for the relocated tab bar window controls. Since #nav-bar has its own transition
-   when hidden, the spacing is applied to #PanelUI-button instead to keep things simpler. */
-@media -moz-pref("uc.flex.auto-hide-navbar-and-keep-horizontal-tabs") and (not -moz-pref("sidebar.verticalTabs")) {
-    @media not -moz-pref("uc.flex.restore-window-controls-on-tabbar") {
-        #PanelUI-button {
-            :root:not([customizing]) & {
-                padding-right: var(--uc-sb-nav-bar-padding-right, var(--uc-nav-bar-padding-right));
+:root:not([customizing]) {
+    /* Add right padding to the tab bar to prevent the "List All Tabs" button
+       from being too close to the window edge. */
+    @media not -moz-pref("uc.flex.restore-window-controls-on-tabbar"),
+        -moz-pref("uc.flex.move-window-controls-to-left") {
+        /* Use :not([tabs-hidden]) to exclude both -moz-pref("sidebar.verticalTabs") and :root[taskbartab] conditions */
+        #navigator-toolbox:not([tabs-hidden]) #TabsToolbar {
+            padding-inline-end: var(--uc-web-content-margin) !important;
+        }
+    }
+
+    /* Add left padding to the taskbar tab favicon to prevent it from being too close to the window edge. */
+    @media not -moz-pref("uc.flex.move-window-controls-to-left"), -moz-pref("uc.flex.auto-hide-window-controls") {
+        &[taskbartab] {
+            #taskbar-tabs-favicon {
+                padding-inline-start: var(--uc-web-content-margin) !important;
+            }
+        }
+    }
+
+    /* When auto-hide navbar is enabled and window controls are moved to the left,
+       add space to the left of #nav-bar-customization-target for the relocated tab bar window controls.
+       Since #nav-bar has its own transition when hidden, the spacing is applied to
+       #nav-bar-customization-target instead to keep things simpler. */
+    @media -moz-pref("uc.flex.auto-hide-navbar-and-keep-horizontal-tabs") and -moz-pref("uc.flex.move-window-controls-to-left") {
+        @media not -moz-pref("uc.flex.restore-window-controls-on-tabbar") {
+            #navigator-toolbox:not([tabs-hidden]) #nav-bar-customization-target {
+                padding-left: var(--uc-sb-nav-bar-padding-inline, var(--uc-window-controls-offset)) !important;
                 @media -moz-pref("uc.flex.auto-hide-window-controls") {
-                    transition: padding-right 0.5s ease-in-out;
+                    padding-left: 0 !important;
+                    transition: padding-left 0.5s ease-in-out;
                     #TabsToolbar:has(> .titlebar-buttonbox-container:hover) ~ #nav-bar & {
-                        padding-right: var(--uc-sb-nav-bar-padding-right, 104px);
+                        padding-left: var(
+                            --uc-sb-nav-bar-padding-inline,
+                            calc(var(--uc-window-controls-width) + 4px)
+                        ) !important;
                     }
                 }
                 @media not -moz-pref("uc.flex.auto-hide-window-controls") {
                     #toolbar-menubar[inactive="true"] ~ #nav-bar & {
-                        --uc-nav-bar-padding-right: 104px;
+                        --uc-window-controls-offset: calc(var(--uc-window-controls-width) + 4px);
+                    }
+                }
+            }
+        }
+    }
+
+    /* When auto-hide navbar is enabled, add space to the right of #PanelUI-button
+       for the relocated tab bar window controls. Since #nav-bar has its own transition
+       when hidden, the spacing is applied to #PanelUI-button instead to keep things simpler. */
+    @media -moz-pref("uc.flex.auto-hide-navbar-and-keep-horizontal-tabs") {
+        @media not (-moz-pref("uc.flex.restore-window-controls-on-tabbar") or -moz-pref("uc.flex.move-window-controls-to-left")) {
+            #navigator-toolbox:not([tabs-hidden]) #PanelUI-button {
+                padding-right: var(--uc-sb-nav-bar-padding-inline, var(--uc-window-controls-offset));
+                @media -moz-pref("uc.flex.auto-hide-window-controls") {
+                    transition: padding-right 0.5s ease-in-out;
+                    #TabsToolbar:has(> .titlebar-buttonbox-container:hover) ~ #nav-bar & {
+                        padding-right: var(--uc-sb-nav-bar-padding-inline, var(--uc-window-controls-width));
+                    }
+                }
+                @media not -moz-pref("uc.flex.auto-hide-window-controls") {
+                    #toolbar-menubar[inactive="true"] ~ #nav-bar & {
+                        --uc-window-controls-offset: var(--uc-window-controls-width);
                     }
                 }
             }
@@ -322,7 +430,16 @@
 #nav-bar-customization-target {
     & > :is(toolbarbutton, toolbaritem):first-child,
     & > toolbarpaletteitem:first-child > :is(toolbarbutton, toolbaritem) {
-        padding-inline-start: var(--uc-nav-bar-padding-left) !important;
+        padding-inline-start: var(--uc-nav-bar-first-child-padding-left) !important;
+        /**
+         * Since a 1px shift is reserved earlier for hover when window controls are on the left,
+         * apply a -1px offset to the navbar to keep the sidebar button properly aligned.
+         * The auto-hide navbar case would normally be excluded because its window controls
+         * are absolutely positioned, but it's left as-is for simplicity.
+         */
+        @media -moz-pref("uc.flex.auto-hide-window-controls") and -moz-pref("uc.flex.move-window-controls-to-left") {
+            margin-inline-start: -1px !important;
+        }
     }
 }
 

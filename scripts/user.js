@@ -49,12 +49,6 @@ user_pref("uc.flex.show-tab-close-button-on-favicon-hover",     false);
 user_pref("uc.flex.show-tab-count-in-alltabs-button",               2);
 /* Shows a numeric index before each tab's label text. */
 user_pref("uc.flex.show-tab-number-in-tab-label",               false);
-/* Moves PiP window volume button to the top */
-user_pref("uc.flex.move-pip-volume-to-top",                     false);
-/* Darkens background when URL bar dropdown is open (0 = off, 1–2 = dim intensity). */
-user_pref("uc.flex.dim-urlbar-popup-backdrop",                      1);
-/* Adds margin, shadow, and rounded corners to web content (0 = off, 1–2 = more margin). */
-user_pref("uc.flex.enable-rounded-web-content",                     0);
 
 /* 🚫 Disable or Revert Features */
 /* Disables all FlexFox features without restarting Firefox */
@@ -122,6 +116,54 @@ user_pref("browser.tabs.fadeOutExplicitlyUnloadedTabs",          true);
 user_pref("browser.tabs.fadeOutUnloadedTabs",                    true);
 /* Sets animation duration for Firefox's native auto-collapse (only used if `sidebar.visibility` is set to `expand-on-hover`). */
 user_pref("sidebar.animation.expand-on-hover.duration-ms",        400);
+
+/* 🎨 UI Style & Appearance */
+/* Switches the sidebar toggle icon.
+   1 = Firefox Master Brand (default)
+   2 = Firefox Browser
+   3 = Firefox System 1
+   4 = Mozilla Flag */
+user_pref("uc.flex.style-sidebar-button",                           1);
+/* Changes navbar and sidebar background.
+   1 = Tokyo Night (default)
+   2 = Firefox Acorn Design */
+user_pref("uc.flex.style-toolbar-bgcolor",                          1);
+/* Customizes the URL bar appearance.
+   1 = Flat (default)
+   2 = Inset (centered text)
+   3 = Debossed (centered text)
+   4 = Seamless (centered text) */
+user_pref("uc.flex.style-urlbar",                                   1);
+/* Centers the URL bar popup.
+   0 = Disabled (default)
+   1 = When focused
+   2 = When typing */
+user_pref("uc.flex.move-urlbar-popup-to-center",                    0);
+/* Darkens background when URL bar dropdown is open (0 = off, 1–2 = dim intensity). */
+user_pref("uc.flex.dim-urlbar-popup-backdrop",                      1);
+/* Switches window control icon style.
+   1 = Traffic Light (default)
+   2 = Yosemite Buttons
+   3 = Yosemite GTK */
+user_pref("uc.flex.style-window-controls",                          1);
+/* Slightly raises the window control buttons. */
+user_pref("uc.flex.style-window-controls-shift-up",             false);
+/* Reduces the size of window control buttons. */
+user_pref("uc.flex.style-window-controls-shrink-size",          false);
+/* Moves window controls to the left side of the navbar or tab bar. */
+user_pref("uc.flex.move-window-controls-to-left",               false);
+/* Moves PiP window volume button to the top */
+user_pref("uc.flex.move-pip-volume-to-top",                     false);
+/* Adjusts the appearance of tab groups in native vertical tabs.
+   Values: 1 = show expand/collapse indicator without animation
+           2 = show indicator with animation
+           3 = center labels, no indicator, no animation
+           4 = center labels, no indicator, with animation */
+user_pref("uc.flex.style-tab-group",                                1);
+/* Adds margin, shadow, and rounded corners to web content (0 = off, 1–2 = more margin). */
+user_pref("uc.flex.enable-rounded-web-content",                     0);
+/* Also rounds the web content corner next to the Sidebery colored stripe when rounded web content is enabled. */
+user_pref("uc.flex.enable-rounded-web-content-at-sidebery-corner", false);
 
 /* 🧊 Visual Background & Mica Effects */
 /* Enables native Mica backdrop (Windows 11 only; requires System theme). */
