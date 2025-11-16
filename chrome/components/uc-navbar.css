@@ -95,7 +95,7 @@ toolbarbutton:hover {
 }
 
 /* Modified from https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/autohide_toolbox.css */
-/* 9bf9c83 */
+/* 2f30a22 */
 
 /* Hide the whole toolbar area unless urlbar is focused or cursor is over the toolbar */
 /* Dimensions on non-Win10 OS probably needs to be adjusted */
@@ -165,13 +165,15 @@ toolbarbutton:hover {
             transform: rotateX(89.9deg);
         }
 
+        :root[window-modal-open] #urlbar[popover],
         #mainPopupSet:has(
                 > [panelopen]:not(
                         #ask-chat-shortcuts,
                         #selection-shortcut-action-panel,
                         #chat-shortcuts-options-panel,
                         #tab-preview-panel
-                    )
+                    ),
+                > #tab-group-editor > [panelopen]
             )
             ~ toolbox
             #urlbar[popover],
@@ -205,13 +207,15 @@ toolbarbutton:hover {
             transform: rotateX(0deg);
         }
 
+        :root[window-modal-open] #navigator-toolbox,
         #mainPopupSet:has(
                 > [panelopen]:not(
                         #ask-chat-shortcuts,
                         #selection-shortcut-action-panel,
                         #chat-shortcuts-options-panel,
                         #tab-preview-panel
-                    )
+                    ),
+                > #tab-group-editor > [panelopen]
             )
             ~ toolbox,
         #navigator-toolbox:has(#urlbar:is([open], [focus-within])),
@@ -319,13 +323,15 @@ toolbarbutton:hover {
             transform: rotateX(89.9deg);
         }
 
+        :root[window-modal-open] #urlbar[popover],
         #mainPopupSet:has(
                 > [panelopen]:not(
                         #ask-chat-shortcuts,
                         #selection-shortcut-action-panel,
                         #chat-shortcuts-options-panel,
                         #tab-preview-panel
-                    )
+                    ),
+                > #tab-group-editor > [panelopen]
             )
             ~ toolbox
             #urlbar[popover],
@@ -363,13 +369,15 @@ toolbarbutton:hover {
             transform: rotateX(0deg);
         }
 
+        :root[window-modal-open] #navigator-toolbox,
         #mainPopupSet:has(
                 > [panelopen]:not(
                         #ask-chat-shortcuts,
                         #selection-shortcut-action-panel,
                         #chat-shortcuts-options-panel,
                         #tab-preview-panel
-                    )
+                    ),
+                > #tab-group-editor > [panelopen]
             )
             ~ toolbox,
         #navigator-toolbox:has(#urlbar:is([open], [focus-within])),
