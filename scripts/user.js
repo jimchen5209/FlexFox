@@ -76,7 +76,7 @@ user_pref("uc.flex.revert-to-original-window-controls",         true);
    1 = Firefox v145+ rounded (8px)
    2 = Pre-v145 flat (4px)
    3 = FlexFox rounded for URL/Search Bar only */
-user_pref("uc.flex.revert-to-original-flat-corner-style",           0);
+user_pref("uc.flex.revert-to-original-flat-corner-style",           2);
 /* Reverts the bookmark star icon to Firefox's default design. */
 user_pref("uc.flex.revert-to-original-bookmark-star-icon",      true);
 /* Reverts the sidebar button icon to Firefox's default design. */
