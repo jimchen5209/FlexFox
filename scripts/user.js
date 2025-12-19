@@ -228,3 +228,10 @@ user_pref("uc.flex.browser-wallpaper-contrast-level",               2);
 // user_pref("devtools.chrome.enabled",                           true);
 // user_pref("devtools.debugger.remote-enabled",                  true);
 // user_pref("devtools.debugger.prompt-connection",              false);
+
+// Disable everything in userContent.css to improve performance
+user_pref(uc.flex.skip-loading-uc-sidebery.css,    true);
+user_pref(uc.flex.skip-loading-uc-newtab.css,      true);
+user_pref(uc.flex.skip-loading-uc-aboutconfig.css, true);
+user_pref(uc.flex.skip-loading-uc-pdf.js.css,      true);
+user_pref(uc.flex.skip-loading-uc-common.css,      true);
